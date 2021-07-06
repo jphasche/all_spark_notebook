@@ -1,0 +1,24 @@
+version: '3.5'
+
+networks:
+    dcc:
+
+services:
+    allspark_container:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: allspark_container
+        networks:
+            - dcc
+        #para linkear data de directorios en el pc al docker        
+        volumes:     
+          - /Users/jphasche:/home/jovyan
+        ports: 
+            - "8888:8888"
+            - "4040:4040"
+            - "4041:4041"
+
+        environment: 
+            - JUPYTER_ENABLE_LAB=yes
+            - PWD="/home/jovyan/work jupyter/all-spark-notebook"
